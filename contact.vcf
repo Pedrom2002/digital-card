@@ -1,0 +1,9 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Nome Apelido
+ORG:Empresa
+TITLE:Cargo
+TEL;TYPE=CELL:+351900000000
+EMAIL:nome@empresa.pt
+URL:https://empresa.pt
+END:VCARD
