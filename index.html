@@ -132,6 +132,33 @@
     }
     .btn-save:hover { opacity: 0.88; }
 
+    /* NFC button */
+    .btn-nfc {
+      background: transparent;
+      color: #7c9cff;
+      border: 1px solid #7c9cff;
+      padding: 10px 28px;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      margin-bottom: 16px;
+      font-family: inherit;
+    }
+    .btn-nfc:hover { background: #7c9cff; color: #0f0f1a; }
+    .btn-nfc:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .nfc-status {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 16px;
+      min-height: 18px;
+      text-align: center;
+    }
+    .nfc-status.success { color: #34d399; }
+    .nfc-status.error { color: #f87171; }
+
     /* QR section */
     .qr-section {
       display: flex;
@@ -202,6 +229,12 @@
       ⬇ Guardar Contacto
     </a>
 
+    <!-- NFC Share -->
+    <button id="btn-nfc" class="btn-nfc" onclick="shareNFC()" style="display:none">
+      📡 Partilhar via NFC
+    </button>
+    <p id="nfc-status" class="nfc-status" aria-live="polite"></p>
+
     <!-- QR Code -->
     <div class="qr-section">
       <p class="qr-label">Partilhar este cartão</p>
@@ -220,6 +253,41 @@
       colorLight: '#0f0f1a',
       correctLevel: QRCode.CorrectLevel.M
     });
+  </script>
+  <script>
+    (function() {
+      if ('NDEFReader' in window) {
+        document.getElementById('btn-nfc').style.display = 'block';
+      }
+    })();
+
+    async function shareNFC() {
+      const btn = document.getElementById('btn-nfc');
+      const status = document.getElementById('nfc-status');
+
+      btn.disabled = true;
+      status.className = 'nfc-status';
+      status.textContent = 'Aproxima o telemóvel de outro dispositivo NFC...';
+
+      try {
+        const ndef = new NDEFReader();
+        await ndef.write({ records: [{ recordType: 'url', data: window.location.href }] });
+        status.className = 'nfc-status success';
+        status.textContent = '✓ Contacto partilhado com sucesso!';
+        setTimeout(() => { status.textContent = ''; }, 3000);
+      } catch (err) {
+        status.className = 'nfc-status error';
+        if (err.name === 'NotAllowedError') {
+          status.textContent = 'Permissão NFC negada. Permite nas definições.';
+        } else if (err.name === 'NotSupportedError') {
+          status.textContent = 'NFC não disponível neste dispositivo.';
+        } else {
+          status.textContent = 'Erro NFC: ' + err.message;
+        }
+      } finally {
+        btn.disabled = false;
+      }
+    }
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
 </body>
