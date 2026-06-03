@@ -266,6 +266,7 @@
       const status = document.getElementById('nfc-status');
 
       btn.disabled = true;
+      btn.textContent = '📡 A aguardar toque NFC...';
       status.className = 'nfc-status';
       status.textContent = 'Aproxima o telemóvel de outro dispositivo NFC...';
 
@@ -277,7 +278,9 @@
         setTimeout(() => { status.textContent = ''; }, 3000);
       } catch (err) {
         status.className = 'nfc-status error';
-        if (err.name === 'NotAllowedError') {
+        if (err.name === 'AbortError') {
+          status.textContent = '';
+        } else if (err.name === 'NotAllowedError') {
           status.textContent = 'Permissão NFC negada. Permite nas definições.';
         } else if (err.name === 'NotSupportedError') {
           status.textContent = 'NFC não disponível neste dispositivo.';
@@ -286,6 +289,7 @@
         }
       } finally {
         btn.disabled = false;
+        btn.textContent = '📡 Partilhar via NFC';
       }
     }
   </script>
