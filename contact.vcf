@@ -1,9 +1,9 @@
 BEGIN:VCARD
 VERSION:3.0
-FN:Nome Apelido
-ORG:Empresa
-TITLE:Cargo
-TEL;TYPE=CELL:+351900000000
-EMAIL:nome@empresa.pt
-URL:https://empresa.pt
+FN:João Silva
+ORG:TechNova Lda
+TITLE:Diretor de Produto
+TEL;TYPE=CELL:+351912345678
+EMAIL:joao.silva@technova.pt
+URL:https://technova.pt
 END:VCARD
