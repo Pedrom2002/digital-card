@@ -6,6 +6,74 @@
   <title>Empresa | Nome Apelido</title>
 </head>
 <body>
-  <p>Card coming soon</p>
+  <main class="card">
+
+    <!-- Logo -->
+    <div class="logo" aria-label="Logo da empresa">E</div>
+
+    <!-- Identity -->
+    <div class="identity">
+      <h1 class="company">EMPRESA</h1>
+      <p class="title">Cargo</p>
+      <p class="name">Nome Apelido</p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Contact rows -->
+    <ul class="contacts" role="list">
+      <li>
+        <a href="tel:+351900000000" class="contact-row">
+          <span class="contact-icon" aria-hidden="true">📞</span>
+          <div class="contact-text">
+            <span class="contact-label">Telefone</span>
+            <span class="contact-value">+351 900 000 000</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="mailto:nome@empresa.pt" class="contact-row">
+          <span class="contact-icon" aria-hidden="true">✉</span>
+          <div class="contact-text">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">nome@empresa.pt</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="https://empresa.pt" target="_blank" rel="noopener" class="contact-row">
+          <span class="contact-icon" aria-hidden="true">🌐</span>
+          <div class="contact-text">
+            <span class="contact-label">Website</span>
+            <span class="contact-value">empresa.pt</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Save contact CTA -->
+    <a href="contact.vcf" download class="btn-save">
+      ⬇ Guardar Contacto
+    </a>
+
+    <!-- QR Code -->
+    <div class="qr-section">
+      <p class="qr-label">Partilhar este cartão</p>
+      <canvas id="qr-canvas"></canvas>
+    </div>
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    new QRCode(document.getElementById('qr-canvas'), {
+      text: window.location.href,
+      width: 160,
+      height: 160,
+      colorDark: '#7c9cff',
+      colorLight: '#0f0f1a',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  </script>
 </body>
 </html>
