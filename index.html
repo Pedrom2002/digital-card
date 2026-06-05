@@ -322,23 +322,18 @@
     <div class="qr-section">
       <p class="qr-label">Partilhar este cartão</p>
       <div class="qr-wrap">
-        <div id="qr-canvas"></div>
+        <img id="qr-img" src="" alt="QR Code" width="160" height="160" style="display:block;border-radius:4px;">
       </div>
     </div>
 
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <script>
-    QRCode.toCanvas(document.createElement('canvas'), window.location.href, {
-      width: 160,
-      margin: 1,
-      color: { dark: '#000000', light: '#ffffff' }
-    }, function(err, canvas) {
-      if (!err) {
-        document.getElementById('qr-canvas').appendChild(canvas);
-      }
-    });
+    (function() {
+      var url = encodeURIComponent(window.location.href);
+      document.getElementById('qr-img').src =
+        'https://api.qrserver.com/v1/create-qr-code/?size=160x160&margin=10&data=' + url;
+    })();
   </script>
   <script>
     (function() {
