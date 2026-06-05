@@ -322,7 +322,7 @@
     <div class="qr-section">
       <p class="qr-label">Partilhar este cartão</p>
       <div class="qr-wrap">
-        <img id="qr-img" src="" alt="QR Code" width="160" height="160" style="display:block;border-radius:4px;">
+        <img id="qr-img" src="" alt="QR Code" width="200" height="200" style="display:block;border-radius:4px;">
       </div>
     </div>
 
@@ -330,9 +330,19 @@
 
   <script>
     (function() {
-      var url = encodeURIComponent(window.location.href);
+      var vcard = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'FN:Carlos Vieira',
+        'ORG:QUIC',
+        'TITLE:CEO',
+        'TEL;TYPE=CELL:+351967202514',
+        'EMAIL:Carlos.Vieira@quic.pt',
+        'URL:https://quic.pt',
+        'END:VCARD'
+      ].join('\n');
       document.getElementById('qr-img').src =
-        'https://api.qrserver.com/v1/create-qr-code/?size=160x160&margin=10&data=' + url;
+        'https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=10&data=' + encodeURIComponent(vcard);
     })();
   </script>
   <script>
