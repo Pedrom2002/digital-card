@@ -3,73 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TechNova | João Silva</title>
+  <title>QUIC | Carlos Vieira</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: #0f0f1a;
-      color: #e2e8f0;
+      background: #0a0a0a;
+      color: #f0f0f0;
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px 16px;
+      padding: 32px 16px;
     }
 
     .card {
       width: 100%;
-      max-width: 380px;
+      max-width: 360px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0;
+    }
+
+    /* Top bar accent */
+    .card::before {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 2px;
+      background: #fff;
+      margin-bottom: 36px;
     }
 
     /* Logo */
     .logo {
-      width: 72px;
-      height: 72px;
-      background: #1e2a4a;
-      border: 2px solid #2d4080;
-      border-radius: 16px;
+      width: 68px;
+      height: 68px;
+      background: #fff;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #7c9cff;
-      font-size: 28px;
-      font-weight: 800;
-      margin-bottom: 20px;
+      color: #0a0a0a;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
     }
 
     /* Identity */
-    .identity { text-align: center; margin-bottom: 20px; }
-    .company {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: #e2e8f0;
-      text-transform: uppercase;
-    }
-    .title {
-      font-size: 14px;
-      color: #7c9cff;
-      font-weight: 500;
-      margin-top: 4px;
+    .identity {
+      text-align: center;
+      margin-bottom: 6px;
     }
     .name {
-      font-size: 13px;
-      color: #64748b;
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+    }
+    .title {
+      font-size: 12px;
+      color: #666;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+    .company {
+      font-size: 12px;
+      color: #444;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       margin-top: 2px;
     }
 
     /* Divider */
     .divider {
       border: none;
-      border-top: 1px solid #1e2a4a;
-      width: 40px;
-      margin: 0 0 20px;
+      border-top: 1px solid #1e1e1e;
+      width: 100%;
+      margin: 28px 0;
     }
 
     /* Contact rows */
@@ -78,103 +94,159 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 24px;
+      gap: 8px;
+      margin-bottom: 28px;
     }
 
     .contact-row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      background: #141426;
-      border: 1px solid #1e2a4a;
-      border-radius: 10px;
-      padding: 10px 14px;
+      gap: 14px;
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 12px;
+      padding: 13px 16px;
       text-decoration: none;
-      transition: border-color 0.15s, background 0.15s;
+      transition: background 0.15s, border-color 0.15s;
     }
     .contact-row:hover, .contact-row:focus {
-      border-color: #7c9cff;
-      background: #1a1a35;
+      background: #181818;
+      border-color: #333;
       outline: none;
     }
 
-    .contact-icon { font-size: 18px; flex-shrink: 0; }
+    .contact-icon {
+      width: 36px;
+      height: 36px;
+      background: #1a1a1a;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: #888;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
     .contact-text {
       display: flex;
       flex-direction: column;
-      gap: 1px;
+      gap: 2px;
+      min-width: 0;
     }
     .contact-label {
       font-size: 10px;
-      color: #4a5568;
+      color: #444;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
     .contact-value {
       font-size: 13px;
-      color: #cbd5e1;
+      color: #ccc;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .contact-arrow {
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+    .contact-arrow svg {
+      width: 14px;
+      height: 14px;
+      stroke: #2a2a2a;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     /* Save button */
     .btn-save {
-      background: #7c9cff;
-      color: #0f0f1a;
-      padding: 12px 32px;
-      border-radius: 24px;
+      width: 100%;
+      background: #fff;
+      color: #0a0a0a;
+      padding: 14px;
+      border-radius: 12px;
       font-size: 14px;
       font-weight: 700;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
       text-decoration: none;
+      text-align: center;
       transition: opacity 0.15s;
-      margin-bottom: 32px;
+      margin-bottom: 12px;
+      display: block;
     }
     .btn-save:hover { opacity: 0.88; }
 
     /* NFC button */
     .btn-nfc {
+      width: 100%;
       background: transparent;
-      color: #7c9cff;
-      border: 1px solid #7c9cff;
-      padding: 10px 28px;
-      border-radius: 24px;
-      font-size: 14px;
-      font-weight: 600;
+      color: #555;
+      border: 1px solid #1e1e1e;
+      padding: 13px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 500;
       cursor: pointer;
-      transition: background 0.15s, color 0.15s;
-      margin-bottom: 16px;
+      transition: border-color 0.15s, color 0.15s;
+      margin-bottom: 8px;
       font-family: inherit;
+      display: none;
     }
-    .btn-nfc:hover { background: #7c9cff; color: #0f0f1a; }
-    .btn-nfc:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-nfc:hover { border-color: #333; color: #888; }
+    .btn-nfc:disabled { opacity: 0.4; cursor: not-allowed; }
 
     .nfc-status {
-      font-size: 12px;
-      color: #64748b;
-      margin-bottom: 16px;
-      min-height: 18px;
+      font-size: 11px;
+      color: #444;
+      margin-bottom: 28px;
+      min-height: 16px;
       text-align: center;
+      width: 100%;
     }
-    .nfc-status.success { color: #34d399; }
-    .nfc-status.error { color: #f87171; }
+    .nfc-status.success { color: #6ee7b7; }
+    .nfc-status.error { color: #fca5a5; }
 
     /* QR section */
     .qr-section {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      padding-top: 4px;
     }
     .qr-label {
-      font-size: 11px;
-      color: #4a5568;
+      font-size: 10px;
+      color: #333;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
     }
-    #qr-canvas {
-      border-radius: 8px;
-      overflow: hidden;
+    .qr-wrap {
+      background: #fff;
+      border-radius: 12px;
+      padding: 10px;
+      display: inline-flex;
+    }
+    #qr-canvas { display: block; border-radius: 4px; }
+
+    /* Bottom bar */
+    .card::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 2px;
+      background: #1e1e1e;
+      margin-top: 36px;
     }
   </style>
 </head>
@@ -182,13 +254,13 @@
   <main class="card">
 
     <!-- Logo -->
-    <div class="logo" aria-label="Logo da empresa">T</div>
+    <div class="logo" aria-label="Logo QUIC">Q</div>
 
     <!-- Identity -->
     <div class="identity">
-      <h1 class="company">TECHNOVA</h1>
-      <p class="title">Diretor de Produto</p>
-      <p class="name">João Silva</p>
+      <h1 class="name">Carlos Vieira</h1>
+      <p class="title">CEO</p>
+      <p class="company">QUIC</p>
     </div>
 
     <hr class="divider">
@@ -196,49 +268,66 @@
     <!-- Contact rows -->
     <ul class="contacts" role="list">
       <li>
-        <a href="tel:+351912345678" class="contact-row">
-          <span class="contact-icon" aria-hidden="true">📞</span>
+        <a href="tel:+351967202514" class="contact-row">
+          <span class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </span>
           <div class="contact-text">
             <span class="contact-label">Telefone</span>
-            <span class="contact-value">+351 912 345 678</span>
+            <span class="contact-value">+351 967 202 514</span>
           </div>
+          <span class="contact-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
         </a>
       </li>
       <li>
-        <a href="mailto:joao.silva@technova.pt" class="contact-row">
-          <span class="contact-icon" aria-hidden="true">✉</span>
+        <a href="mailto:Carlos.Vieira@quic.pt" class="contact-row">
+          <span class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </span>
           <div class="contact-text">
             <span class="contact-label">Email</span>
-            <span class="contact-value">joao.silva@technova.pt</span>
+            <span class="contact-value">Carlos.Vieira@quic.pt</span>
           </div>
+          <span class="contact-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
         </a>
       </li>
       <li>
-        <a href="https://technova.pt" target="_blank" rel="noopener noreferrer" class="contact-row">
-          <span class="contact-icon" aria-hidden="true">🌐</span>
+        <a href="https://quic.pt" target="_blank" rel="noopener noreferrer" class="contact-row">
+          <span class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </span>
           <div class="contact-text">
             <span class="contact-label">Website</span>
-            <span class="contact-value">technova.pt</span>
+            <span class="contact-value">quic.pt</span>
           </div>
+          <span class="contact-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
         </a>
       </li>
     </ul>
 
     <!-- Save contact CTA -->
     <a href="contact.vcf" download class="btn-save">
-      ⬇ Guardar Contacto
+      Guardar Contacto
     </a>
 
     <!-- NFC Share -->
-    <button id="btn-nfc" class="btn-nfc" onclick="shareNFC()" style="display:none">
-      📡 Partilhar via NFC
+    <button id="btn-nfc" class="btn-nfc" onclick="shareNFC()">
+      Partilhar via NFC
     </button>
     <p id="nfc-status" class="nfc-status" aria-live="polite"></p>
 
     <!-- QR Code -->
     <div class="qr-section">
       <p class="qr-label">Partilhar este cartão</p>
-      <canvas id="qr-canvas"></canvas>
+      <div class="qr-wrap">
+        <canvas id="qr-canvas"></canvas>
+      </div>
     </div>
 
   </main>
@@ -247,10 +336,10 @@
   <script>
     new QRCode(document.getElementById('qr-canvas'), {
       text: window.location.href,
-      width: 160,
-      height: 160,
-      colorDark: '#7c9cff',
-      colorLight: '#0f0f1a',
+      width: 140,
+      height: 140,
+      colorDark: '#0a0a0a',
+      colorLight: '#ffffff',
       correctLevel: QRCode.CorrectLevel.M
     });
   </script>
@@ -266,7 +355,7 @@
       const status = document.getElementById('nfc-status');
 
       btn.disabled = true;
-      btn.textContent = '📡 A aguardar toque NFC...';
+      btn.textContent = 'A aguardar toque NFC...';
       status.className = 'nfc-status';
       status.textContent = 'Aproxima o telemóvel de outro dispositivo NFC...';
 
@@ -274,7 +363,7 @@
         const ndef = new NDEFReader();
         await ndef.write({ records: [{ recordType: 'url', data: window.location.href }] });
         status.className = 'nfc-status success';
-        status.textContent = '✓ Contacto partilhado com sucesso!';
+        status.textContent = 'Contacto partilhado com sucesso.';
         setTimeout(() => { status.textContent = ''; }, 3000);
       } catch (err) {
         status.className = 'nfc-status error';
@@ -289,7 +378,7 @@
         }
       } finally {
         btn.disabled = false;
-        btn.textContent = '📡 Partilhar via NFC';
+        btn.textContent = 'Partilhar via NFC';
       }
     }
   </script>
