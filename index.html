@@ -322,21 +322,22 @@
     <div class="qr-section">
       <p class="qr-label">Partilhar este cartão</p>
       <div class="qr-wrap">
-        <canvas id="qr-canvas"></canvas>
+        <div id="qr-canvas"></div>
       </div>
     </div>
 
   </main>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <script>
-    new QRCode(document.getElementById('qr-canvas'), {
-      text: window.location.href,
+    QRCode.toCanvas(document.createElement('canvas'), window.location.href, {
       width: 160,
-      height: 160,
-      colorDark: '#000000',
-      colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.M
+      margin: 1,
+      color: { dark: '#000000', light: '#ffffff' }
+    }, function(err, canvas) {
+      if (!err) {
+        document.getElementById('qr-canvas').appendChild(canvas);
+      }
     });
   </script>
   <script>
